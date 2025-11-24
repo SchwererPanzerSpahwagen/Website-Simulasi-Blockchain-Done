@@ -1,0 +1,330 @@
+/* --------- Variables --------- */
+:root{
+  --bg:#070708;
+  --panel:#0e0e10;
+  --muted:#9aa0a6;
+  --accent-1:#ff2d2d;
+  --accent-2:#ff6a6a;
+  --glow: 0 6px 24px rgba(255,45,45,0.12);
+  --glass: rgba(255,255,255,0.03);
+  --card-border: rgba(255,45,45,0.08);
+  --success:#5ce67a;
+}
+
+/* --------- Reset & Base --------- */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg,#060607 0%, #0d0b0c 40%, #12090a 100%);
+  color: #e6e6e6;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+  padding-bottom:48px;
+}
+
+/* --------- Layout & Container --------- */
+.container{
+  width:100%;
+  margin:0 auto;
+  padding:18px;
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar{
+  background: linear-gradient(90deg, rgba(20,6,6,0.95), rgba(10,2,2,0.88));
+  padding:16px 28px;
+  display:flex;
+  gap:12px;
+  flex-wrap:nowrap;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom: 1px solid rgba(255,45,45,0.06);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width:100%;
+  box-sizing:border-box;
+}
+
+.navbar button{
+  flex:1;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  color: #f6f6f6;
+  border: 1px solid rgba(255,255,255,0.04);
+  padding:16px 0;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:700;
+  font-size:1.05rem;
+  letter-spacing:0.4px;
+  transition: all .18s ease;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.6);
+}
+
+.navbar button:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(255,45,45,0.15);
+}
+
+.navbar button.active{
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  color: #110808;
+  border: none;
+  box-shadow: 0 6px 28px rgba(255,45,45,0.28), 0 0 18px rgba(255,90,90,0.12) inset;
+  animation: pulseRed 2.6s infinite ease-in-out;
+}
+
+/* --------- Page container --------- */
+.page{
+  display:none;
+  padding:20px 40px;
+  width:100%;
+  box-sizing:border-box;
+  margin: 0;
+}
+.page.active{display:block}
+.page h1, .page h2{color:#fff}
+.page h1{font-size:1.6rem;margin-bottom:6px}
+.page h2{font-size:1.2rem;margin-bottom:12px}
+
+/* --------- Cards / Panels --------- */
+.card, .home-card, .block, .wallet, .output, .contact-panel {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid var(--card-border);
+  border-radius:12px;
+  padding:14px;
+  box-shadow: var(--glow);
+}
+
+.muted { color: var(--muted); font-size:0.95rem }
+
+/* --------- HOME --------- */
+.datetime{
+  color: #f0d6d6;
+  background: linear-gradient(90deg, rgba(255,45,45,0.06), rgba(255,106,106,0.02));
+  display:inline-block;padding:8px 12px;border-radius:10px;margin-bottom:12px;
+  font-weight:600;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.6);
+}
+
+.home-card{
+  margin-bottom:14px;
+  border-radius:12px;
+  overflow:hidden;
+}
+.home-card h2{color:#ffd7d7;margin-bottom:8px}
+.home-card p, .home-card li{color:#ddd}
+
+.home-card img.home-image{
+  width:100%;
+  height:auto;
+  border-radius:12px;
+  border:1px solid rgba(255,45,45,0.06);
+}
+
+/* --------- INPUTS --------- */
+input, textarea, select{
+  width:100%;
+  padding:10px 12px;
+  border-radius:8px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.03);
+  color: #eaeaea;
+  outline: none;
+  transition: border .12s ease, box-shadow .12s ease;
+}
+
+input:focus, textarea:focus, select:focus{
+  border-color: rgba(255,45,45,0.9);
+  box-shadow: 0 8px 28px rgba(255,45,45,0.06);
+}
+
+label{display:block;color:var(--muted);font-size:0.92rem;margin-bottom:6px}
+
+/* OUTPUT BOX */
+.output{
+  min-height:48px;
+  word-break:break-word;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,45,45,0.06);
+}
+
+/* --------- BUTTONS --------- */
+.btn, .mine, .send-btn, #page-ecc button, #page-consensus button{
+  display:inline-block;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  color:#100707;
+  padding:10px 14px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+  box-shadow: 0 8px 26px rgba(255,45,45,0.18);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.btn:hover, .mine:hover, .send-btn:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 18px 48px rgba(255,45,45,0.2);
+}
+
+/* --------- BLOCK / CHAIN (Main Page) --------- */
+.chain-container{display:flex;flex-direction:column;gap:12px}
+.blockchain-block{
+  width:100%; /* Full width for normal chain */
+  padding:12px;
+  border-radius:10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.35));
+  border:1px solid rgba(255,45,45,0.04);
+  margin-bottom: 12px;
+}
+.blockchain-block h3{ color:#ffd6d6; margin-bottom: 10px; }
+
+/* --------- ECC --------- */
+#page-ecc textarea{min-height:70px}
+
+/* --------- ABOUT --------- */
+.about-container{
+  display:grid;
+  grid-template-columns: 250px 1fr;
+  gap:40px;
+}
+.about-photo{
+  width:250px;height:250px;object-fit:cover;border-radius:50%;border:3px solid rgba(255,45,45,0.15);
+}
+.about-bio h3{color:#ffdddd;margin-bottom:12px;font-size:1.4rem}
+.about-bio p{color:#e1dcdc;line-height:1.6;margin-bottom:14px}
+.map-container iframe{ width:100%; height:280px; border-radius:10px; }
+#page-about h2 { margin-top: 32px; }
+#page-about ul.about-list { margin-bottom: 8px; }
+
+/* --------- FOOTER --------- */
+.site-footer{
+  margin-top:28px;padding:20px 40px;border-top:1px solid rgba(255,45,45,0.04);
+  background: linear-gradient(180deg, rgba(6,5,5,0.8), rgba(14,6,6,0.9));
+  color:#f1eaea;
+}
+.footer-bottom { padding: 10px 0; text-align: center; font-size: 0.9rem; opacity: 0.8; }
+
+/* --------- Responsive --------- */
+@media (max-width:920px){
+  .navbar{flex-wrap:wrap}
+  .about-container{grid-template-columns: 1fr; text-align:center;}
+  .about-photo{margin:0 auto;}
+}
+
+/* --------- Animation --------- */
+@keyframes pulseRed {
+  0%{ box-shadow: 0 0 0 rgba(255,45,45,0.24) }
+  70%{ box-shadow: 0 0 40px rgba(255,45,45,0.06) }
+  100%{ box-shadow: 0 0 0 rgba(255,45,45,0.0) }
+}
+:focus { outline: 3px solid rgba(255,45,45,0.12); outline-offset: 2px }
+
+/* ============================================================
+   KONSENSUS PAGE STYLES (NEW - HORIZONTAL & INVALID RED)
+   ============================================================ */
+
+/* Container Wallet/Saldo */
+.wallets{display:flex;gap:14px;flex-wrap:wrap; margin-bottom: 20px;}
+.wallet{width:260px;padding:12px;border-radius:12px}
+
+/* Container Horizontal Scroll untuk Chain Konsensus */
+.chain-row {
+  display: flex;
+  flex-direction: row;      /* Susun ke samping */
+  overflow-x: auto;         /* Scroll jika penuh */
+  gap: 14px;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  align-items: flex-start;
+}
+
+/* Custom Scrollbar untuk Chain Row */
+.chain-row::-webkit-scrollbar { height: 8px; }
+.chain-row::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); border-radius: 4px; }
+.chain-row::-webkit-scrollbar-thumb { background: rgba(255, 45, 45, 0.3); border-radius: 4px; }
+
+/* Style Blok Konsensus (Card Style) */
+.chain-block {
+  flex: 0 0 300px;          /* Lebar tetap 300px, tidak mengecil */
+  width: 300px;
+  background: linear-gradient(180deg, #131315, #0d0d0f);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-left: 3px solid var(--accent-1); 
+  border-radius: 10px;
+  padding: 12px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* -- PENTING: Style Merah untuk Blok Invalid -- */
+.chain-block.invalid {
+  border: 1px solid #ff2d2d;
+  background: rgba(255, 45, 45, 0.15);
+  box-shadow: 0 0 16px rgba(255, 45, 45, 0.25);
+}
+
+/* Header Blok Konsensus */
+.chain-block h4 {
+  color: var(--accent-2);
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-bottom: 6px;
+}
+
+/* Textarea Data Konsensus */
+.chain-block textarea.data {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.9rem;
+  color: #fff;
+  margin-bottom: 10px;
+  resize: none; 
+}
+
+/* Layout Sejajar (Side-by-side) untuk Nonce & Timestamp */
+.meta-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.meta-item {
+  flex: 1;
+  min-width: 0; /* Agar tidak overflow */
+}
+.meta-item label {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+.meta-item input {
+  padding: 5px;
+  font-size: 0.75rem;
+  background: rgba(255,255,255,0.04);
+  border: none;
+  text-overflow: ellipsis;
+}
+
+/* Hash Input Compact (Digeser/Scroll) */
+.hash-group label {
+  font-size: 0.75rem;
+  color: var(--accent-2);
+  margin-bottom: 2px;
+}
+.hash-input {
+  font-family: monospace;
+  font-size: 0.75rem;
+  padding: 6px;
+  color: #bbb;
+  background: #050505;
+  border: 1px solid #333;
+  width: 100%;
+  overflow-x: auto; 
+  white-space: nowrap; /* Teks hash tidak turun ke bawah */
+}

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Blockchain Simulator - Versi Final</title>
+    <link rel="stylesheet" href="style4.css" />
+  </head>
+  <body>
+
+    <header class="site-header">
+      <div class="container">
+        <div class="brand">
+          <h1>Blockchain Simulator</h1>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navbar -->
+    <div class="navbar">
+      <button id="tab-home" class="active">Home</button>
+      <button id="tab-about">About Me</button>
+      <button id="tab-hash">Hash</button>
+      <button id="tab-block">Block</button>
+      <button id="tab-chain">Block Chain</button>
+      <button id="tab-ecc">ECC Signature</button>
+      <button id="tab-consensus">Konsensus</button>
+    </div>
+
+    <div class="container">
+
+    <!-- HOME -->
+    <div id="page-home" class="page active">
+      <h1>Selamat datang di Website Belajar Blockchain</h1>
+      <div id="datetime" class="datetime"></div>
+
+      <div class="home-card">
+        <img src="Blockchain.jpg" alt="Blockchain" class="home-image" />
+      </div>
+
+      <!-- ====== TAMBAHAN DARI PERMINTAANMU ====== -->
+      <h2>Mengenal Blockchain</h2>
+      <p style="text-align: justify; line-height: 1.6; font-size: 1rem;">
+        Blockchain adalah sebuah struktur data terdistribusi yang menyimpan
+        catatan transaksi dalam bentuk blok-blok yang saling terhubung dan
+        diamankan menggunakan kriptografi. Setiap blok berisi data, hash unik,
+        serta hash dari blok sebelumnya, sehingga perubahan pada satu blok akan
+        merusak seluruh rantai setelahnya. Sifat terdesentralisasi ini membuat
+        blockchain tahan manipulasi dan sangat cocok digunakan untuk sistem
+        pencatatan digital yang transparan, aman, dan tidak dapat diubah.
+      </p>
+      <!-- ======================================== -->
+    </div>
+
+    <!-- ABOUT ME -->
+    <div id="page-about" class="page">
+      <h1>Tentang Saya</h1>
+
+      <div class="about-container">
+        <img src="foto sma dulu.jpg" alt="Foto Farizky" class="about-photo" />
+
+        <div class="about-bio">
+          <h3>Farizky Rafanshah Firdauzi</h3>
+          <p>
+            Seorang mahasiswa di Politeknik Elektronika Negeri Surabaya (PENS) yang tertarik dengan desain grafis dan visual novel, dengan minat yang kuat untuk mempelajarinya lebih lanjut. Senang mengeksplorasi hal-hal baru, khususnya di bidang multimedia dan desain grafis.
+          </p>
+        </div>
+      </div>
+
+      <hr />
+
+      <h2>Riwayat Pendidikan</h2>
+      <ul class="about-list">
+        <li>D4 Teknologi Rekayasa Multimedia – PENS</li>
+        <li>SMA IPIEMS Surabaya</li>
+        <li>SMPIT Al-Uswah Surabaya</li>
+      </ul>
+
+      <h2>Pengalaman</h2>
+      <ul class="about-list">
+        <li>Staff Pendanaan Immersive Fiesta 2025</li>
+        <li>Nachrichten Lesen Deutsche Woche UNESA 2022</li>
+        <li>Kompetisi esai NUTCASE Universitas Indonesia 2025</li>
+      </ul>
+
+      <h2>Proyek</h2>
+      <ul class="about-list">
+        <li>Visual Novel Ande-Ande Lumut (2024)</li>
+        <li>Animasi 3D Schmerz (2024)</li>
+        <li>Fall Detection AI (2025)</li>
+      </ul>
+
+      <h2>Lokasi Saya</h2>
+      <p style="font-size: 0.9rem; color: #bbb; margin-bottom: 8px;">
+        📍 Kampus PENS, Jl. Raya ITS, Keputih, Kec. Sukolilo, Surabaya, Jawa Timur 60117
+      </p>
+      <div class="map-container">
+        <iframe id="gmaps" allowfullscreen style="width:100%; height:300px; border-radius:10px; border:1px solid rgba(255,45,45,0.06);"></iframe>
+      </div>
+
+      <h2>Hubungi Saya</h2>
+      <div class="contact-panel">
+        <p>Email: <b>farizshah2014@gmail.com</b></p>
+        <p>
+          LinkedIn:
+          <a href="https://www.linkedin.com/in/farizky-rafanshah-72753a312/"
+             target="_blank">Farizky Rafanshah</a>
+        </p>
+      </div>
+
+      <div class="about-footer-contact">
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HASH -->
+    <div id="page-hash" class="page">
+      <h2>Hash Generator</h2>
+      <label for="hash-input">Text Input:</label>
+      <textarea id="hash-input" rows="4"></textarea>
+      <label>SHA-256 Hash:</label>
+      <div id="hash-output" class="output"></div>
+    </div>
+
+    <!-- BLOCK -->
+    <div id="page-block" class="page">
+      <h2>Single Block</h2>
+
+      <label># (Nomor Block):</label>
+      <input id="block-number" type="number" min="0" value="0" />
+
+      <label>Data:</label>
+      <textarea id="block-data" rows="4"></textarea>
+
+      <label>Nonce:</label>
+      <input id="block-nonce" type="text" maxlength="9" />
+
+      <label>Timestamp:</label>
+      <input id="block-timestamp" type="text" readonly />
+
+      <label>Hash:</label>
+      <div id="block-hash" class="output"></div>
+
+      <button id="btn-mine" class="btn mine">Mine</button>
+
+      <label>Kecepatan Mining:</label>
+      <select id="speed-control">
+        <option value="1">Normal</option>
+        <option value="10">10x Lebih Cepat</option>
+        <option value="50">50x Lebih Cepat</option>
+      </select>
+
+      <div id="mining-status" class="status"></div>
+    </div>
+
+    <!-- BLOCKCHAIN -->
+    <div id="page-chain" class="page">
+      <h2>Blockchain</h2>
+      <div id="blockchain" class="chain-container"></div>
+      <div class="chain-controls">
+        <button id="btn-add-block">Add Block</button>
+      </div>
+    </div>
+
+    <!-- ECC -->
+    <div id="page-ecc" class="page">
+      <h2>Verifikasi ECC Digital Signature</h2>
+
+      <button id="btn-generate-key">Generate Key Pair</button>
+      <p>Public Key dan Private Key dapat diedit untuk percobaan.</p>
+
+      <label>Public Key:</label>
+      <textarea id="ecc-public"></textarea>
+
+      <label>Private Key:</label>
+      <textarea id="ecc-private"></textarea>
+
+      <hr />
+      <label>Pesan yang akan ditandatangani:</label>
+      <textarea id="ecc-message"></textarea>
+
+      <button id="btn-sign">Sign Message</button>
+      <label>Hasil Signature (DER hex):</label>
+      <textarea id="ecc-signature" readonly></textarea>
+
+      <hr />
+      <button id="btn-verify">Verify Signature</button>
+      <div id="ecc-verify-result" class="output"></div>
+    </div>
+
+    <!-- KONSENSUS -->
+    <div id="page-consensus" class="page">
+      <h2>Simulasi Konsensus</h2>
+
+      <div class="wallets">
+        <div class="wallet" data-user="A">
+          <h3>User A</h3>
+          <div>Saldo: <span id="saldo-A">100</span></div>
+          <label>Penerima:</label>
+          <select id="receiver-A">
+            <option value="B">User B</option>
+            <option value="C">User C</option>
+          </select>
+          <label>Jumlah:</label>
+          <input id="amount-A" type="number" min="1" value="10" />
+          <button id="send-A">Kirim</button>
+        </div>
+
+        <div class="wallet" data-user="B">
+          <h3>User B</h3>
+          <div>Saldo: <span id="saldo-B">100</span></div>
+          <label>Penerima:</label>
+          <select id="receiver-B">
+            <option value="A">User A</option>
+            <option value="C">User C</option>
+          </select>
+          <label>Jumlah:</label>
+          <input id="amount-B" type="number" min="1" value="10" />
+          <button id="send-B">Kirim</button>
+        </div>
+
+        <div class="wallet" data-user="C">
+          <h3>User C</h3>
+          <div>Saldo: <span id="saldo-C">100</span></div>
+          <label>Penerima:</label>
+          <select id="receiver-C">
+            <option value="A">User A</option>
+            <option value="B">User B</option>
+          </select>
+          <label>Jumlah:</label>
+          <input id="amount-C" type="number" min="1" value="10" />
+          <button id="send-C">Kirim</button>
+        </div>
+      </div>
+
+      <label>Mempool (pending transactions):</label>
+      <textarea id="mempool" rows="3"></textarea>
+
+      <button id="btn-mine-all">Mine Semua Transaksi</button>
+      <button id="btn-verify-consensus">Verify</button>
+      <button id="btn-consensus">Consensus</button>
+
+      <h3>Blockchain Tiap User</h3>
+      <div id="chains">
+        <h4>Database User A</h4>
+        <div id="chain-A" class="chain-row"></div>
+
+        <h4>Database User B</h4>
+        <div id="chain-B" class="chain-row"></div>
+
+        <h4>Database User C</h4>
+        <div id="chain-C" class="chain-row"></div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-inner container">
+        <div class="footer-brand">
+          <div class="logo-placeholder"></div>
+          <div>
+            <strong>Blockchain Simulator</strong>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <ul>
+            <p>Made by Farizky Rafanshah</p>
+            <p>Contact: <a href="mailto:farizshah2014@gmail.com">farizshah2014@gmail.com</a></p>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2025 - Farizky Rafanshah Firdauzi</div>
+    </footer>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/elliptic/6.5.4/elliptic.min.js"></script>
+    <script src="app4.js"></script>
+
+    <!-- ========= LIVE LOCATION SCRIPT ========= -->
+    <script>
+      function setLiveMap() {
+        if (navigator.geolocation) {
+          navigator.geolocation.watchPosition(
+            (pos) => {
+              const lat = pos.coords.latitude;
+              const lon = pos.coords.longitude;
+              const url =
+                "https://www.google.com/maps?q=" +
+                lat +
+                "," +
+                lon +
+                "&z=15&output=embed";
+              document.getElementById("gmaps").src = url;
+            },
+            (err) => {
+              document.getElementById("gmaps").src =
+                "https://www.google.com/maps?q=PENS+Surabaya&z=15&output=embed";
+            }
+          );
+        }
+      }
+
+      setLiveMap();
+    </script>
+    <!-- ========================================= -->
+
+  </body>
+</html>
